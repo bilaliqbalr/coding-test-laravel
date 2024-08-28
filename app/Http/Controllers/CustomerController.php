@@ -11,23 +11,31 @@ class CustomerController extends Controller
     {
         $query = Customer::query();
 
+        // validating data
+        $data = $request->validate([
+            'name' => 'nullable|string',
+            'email' => 'nullable|email',
+            'order_number' => 'nullable|string',
+            'item_name' => 'nullable|string',
+        ]);
+
         if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->input('name') . '%');
+            $query->where('name', 'like', '%' . $data['name'] . '%');
         }
 
         if ($request->filled('email')) {
-            $query->where('email', 'like', '%' . $request->input('email') . '%');
+            $query->where('email', 'like', '%' . $data['email'] . '%');
         }
 
         if ($request->filled('order_number')) {
-            $query->whereHas('orders', function ($q) use ($request) {
-                $q->where('order_number', 'like', '%' . $request->input('order_number') . '%');
+            $query->whereHas('orders', function ($q) use ($request, $data) {
+                $q->where('order_number', 'like', '%' . $data['order_number'] . '%');
             });
         }
 
         if ($request->filled('item_name')) {
-            $query->whereHas('orders.items', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->input('item_name') . '%');
+            $query->whereHas('orders.items', function ($q) use ($request, $data) {
+                $q->where('name', 'like', '%' . $data['item_name'] . '%');
             });
         }
 
