@@ -13,15 +13,10 @@ class CustomerController extends Controller
 
         // validating data
         $data = $request->validate([
-            'name' => 'nullable|string',
             'email' => 'nullable|email',
             'order_number' => 'nullable|string',
             'item_name' => 'nullable|string',
         ]);
-
-        if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $data['name'] . '%');
-        }
 
         if ($request->filled('email')) {
             $query->where('email', 'like', '%' . $data['email'] . '%');

@@ -8,12 +8,10 @@
 </head>
 <body class="bg-gray-100 p-6">
 <div class="container mx-auto">
-    <h1 class="text-2xl font-bold mb-4">Customer Listing</h1>
+    <h1 class="text-2xl font-bold mb-4">Customer Orders Listing</h1>
 
     <!-- Search Form -->
     <form method="GET" action="{{ route('customers.index') }}" class="mb-4 flex space-x-4">
-        <input type="text" name="name" placeholder="Search by Customer Name" value="{{ request('name') }}"
-               class="p-2 border border-gray-300 rounded w-full">
         <input type="text" name="email" placeholder="Search by Email" value="{{ request('email') }}"
                class="p-2 border border-gray-300 rounded w-full">
         <input type="text" name="order_number" placeholder="Search by Order Number" value="{{ request('order_number') }}"
