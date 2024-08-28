@@ -39,7 +39,7 @@
                             <div class="text-gray-700 font-semibold">Order #: {{ $order->order_number }}</div>
                             <div class="mt-2">
                                 <span class="font-semibold text-gray-600">Items:</span>
-                                <ul class="list-disc list-inside grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                                <ul class="list-disc list-inside grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                                     @foreach ($order->items as $item)
                                         <li>{{ $item->name }} ({{ $item->price }}$)</li>
                                     @endforeach
